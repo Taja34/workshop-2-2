@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Builder from './components/Builder';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createStore } from  'redux';
 import { Provider } from 'react-redux';
 import Receipt from './components/Receipt';
@@ -30,8 +30,10 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Route exact path="/" component={Builder} />
-        <Route exact path="/receipt" component={Receipt} />
+      <Routes>
+        <Route  path="/" element={<Builder/>} />
+        <Route  path="/receipt" element={<Receipt/>} />
+        </Routes>
       </BrowserRouter>
     </Provider>
   )
