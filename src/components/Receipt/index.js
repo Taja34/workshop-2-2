@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
-const Receipt = props => {
-    const total = props.burgersArray.reduce(
+const Receipt = () => {
+    const {burgerArray}=useSelector((store)=> store)
+    const total = burgerArray.reduce(
         (sum, price) => price + sum
     , 0);
 
     return (
         <div className="container receipt">
-            {props.burgersArray.map( (price, key) =>
+            {burgerArray.map( (price, key) =>
                 <h2 className="receipt-row" key={key}>{`Burger ${key + 1} x $ ${price}`}</h2>
             )}
         <h1>{`Total: $${total}`}</h1>
