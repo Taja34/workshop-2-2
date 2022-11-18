@@ -1,17 +1,17 @@
-import { receiptTypes } from "../types/receiptTypes";
+import { burgerTypes } from "../types/receiptTypes";
 
 // const initialState = []
 
-export const receiptReset = (burgers) => {
+export const reset = () => {
     return {
-        type: receiptTypes.reset,
-        payload: burgers,
+        type: burgerTypes.BURGER_RESET,
+        payload: [],
     };
 }
 
-export const receiptAddBurger = (burger) => {
+export const addBurger = (burger) => {
     return {
-        type: receiptTypes.addBurger,
+        type: burgerTypes.ADD_BURGER,
         payload: burger,
     };
 }

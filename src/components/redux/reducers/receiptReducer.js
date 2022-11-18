@@ -1,18 +1,16 @@
-import { receiptTypes } from "../types/receiptTypes"
+import { burgerTypes } from "../types/receiptTypes"
 
-const burgers = []
+const arrayBurgers = []
 
-export const receiptReducer = (state = { burgers }, action) => {
+export const burgerReducer = (state = { arrayBurgers }, action) => {
     switch (action.type) {
-        case receiptTypes.reset:
+        case burgerTypes.BURGER_RESET:
             return {
-                ...state,
-                burgers: action.payload
+                ...state,arrayBurgers: action.payload
             }
-        case receiptTypes.addBurger:
+        case burgerTypes.ADD_BURGER:
             return {
-                ...state,
-                burgers: action.payload
+                ...state, arrayBurgers: action.payload
             }
         default:
             return state

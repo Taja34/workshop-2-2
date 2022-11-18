@@ -3,20 +3,22 @@ import Burger from "../Burger";
 import ControlPanel from "../ControlPanel";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { receiptAddBurger } from "../redux/actions/receipAction";
+import { addBurger } from "../redux/actions/receipAction";
+
+
 
 
 export const Builder = () => {
-  
+    const dispatch = useDispatch()
     const [ingredients, setIngredients] = useState([])
-    const { burgers } = useSelector((store) => store.receipt)
+    const { arrayBurgers } = useSelector((store) => store.recibo)
     const prices = {
         bacon: 10,
         salad: 2,
         cheese: 5,
         meat: 20
     };
-    const dispatch = useDispatch()
+ 
     const getPrice = () => {
         const pricesArray = ingredients.map(ingredient => {
             return prices[ingredient];
@@ -28,12 +30,17 @@ export const Builder = () => {
     }
 
     const handleConfirm = () => {
-        const tempBurgers = burgers.slice();
+        const tempBurgers = arrayBurgers.slice();
         tempBurgers.push(getPrice())
-        dispatch(receiptAddBurger(tempBurgers))
+        dispatch(addBurger(tempBurgers))
         setIngredients([]);
     }
-
+    const removeIngredient = index => {
+        console.log(index);
+        const newIngredients = ingredients.slice();
+        newIngredients.splice(index, 1);
+        setIngredients(newIngredients);
+    };
 
     const addIngredient = idIngrediente => {
         const newIngredients = ingredients.slice();
@@ -41,12 +48,7 @@ export const Builder = () => {
         setIngredients(newIngredients);
     };
 
-    const removeIngredient = index => {
-        console.log(index);
-        const newIngredients = ingredients.slice();
-        newIngredients.splice(index, 1);
-        setIngredients(newIngredients);
-    };
+ 
 
     return (
         <div className="container">
@@ -55,8 +57,8 @@ export const Builder = () => {
                     addIngredient(x);
                 }}
             />
-            <h3># Burgers added: {burgers.length}</h3>
-            <h2>Burger {burgers.length + 1} : $ {getPrice()}</h2>
+            <h3># Burgers added: {arrayBurgers.length}</h3>
+            <h2>Burger {arrayBurgers.length + 1} : $ {getPrice()}</h2>
             <div
                 className="button"
                 onClick={() => handleConfirm()}>

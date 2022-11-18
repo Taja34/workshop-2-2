@@ -1,8 +1,9 @@
-import { receiptReducer } from '../reducers/receiptReducer'
-const { configureStore } = require("@reduxjs/toolkit");
+import { configureStore } from '@reduxjs/toolkit';
+import { burgerReducer } from '../reducers/receiptReducer'
+
 
 const reducer = {
-    receipt: receiptReducer
+    recibo: burgerReducer
 };
 const store = configureStore({
     reducer,
